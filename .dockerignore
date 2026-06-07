@@ -1,0 +1,9 @@
+.git
+.github
+.gradle
+build
+dev.db
+frontend
+node_modules
+*.md
+!README.md
