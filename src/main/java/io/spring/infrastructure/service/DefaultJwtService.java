@@ -25,9 +25,8 @@ public class DefaultJwtService implements JwtService {
     this.sessionTime = sessionTime;
     byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
     if (keyBytes.length < 64) {
-      byte[] padded = new byte[64];
-      System.arraycopy(keyBytes, 0, padded, 0, keyBytes.length);
-      keyBytes = padded;
+      throw new IllegalArgumentException(
+          "JWT secret must be at least 64 bytes for HS512. Current length: " + keyBytes.length);
     }
     this.signingKey = Keys.hmacShaKeyFor(keyBytes);
   }
